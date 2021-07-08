@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LekhaCommerceClassesModelStoreContainer" CdmEntityContainer="LekhaCommerceClassesEntities">
+    <EntitySetMapping Name="tbl_Admin">
+      <EntityTypeMapping TypeName="LekhaCommerceClassesModel.tbl_Admin">
+        <MappingFragment StoreEntitySet="tbl_Admin">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CoachingName" ColumnName="CoachingName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_CourseManagment">
+      <EntityTypeMapping TypeName="LekhaCommerceClassesModel.tbl_CourseManagment">
+        <MappingFragment StoreEntitySet="tbl_CourseManagment">
+          <ScalarProperty Name="IsFreeCourse" ColumnName="IsFreeCourse" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_subCourses">
+      <EntityTypeMapping TypeName="LekhaCommerceClassesModel.tbl_subCourses">
+        <MappingFragment StoreEntitySet="tbl_subCourses">
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SubCourseDescription" ColumnName="SubCourseDescription" />
+          <ScalarProperty Name="SubCourseName" ColumnName="SubCourseName" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_SubjectMaster">
+      <EntityTypeMapping TypeName="LekhaCommerceClassesModel.tbl_SubjectMaster">
+        <MappingFragment StoreEntitySet="tbl_SubjectMaster">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SubjectDescription" ColumnName="SubjectDescription" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="SubCourseId" ColumnName="SubCourseId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

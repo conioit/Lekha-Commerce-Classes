@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LekhaCommerceClassesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="CoachingName" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_CourseManagment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="500" />
+          <Property Name="CourseDescription" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsFreeCourse" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_subCourses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="SubCourseName" Type="nvarchar" MaxLength="500" />
+          <Property Name="SubCourseDescription" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="StartDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_SubjectMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="SubCourseId" Type="int" />
+          <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubjectDescription" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_tbl_subCourses_tbl_CourseManagment">
+          <End Role="tbl_CourseManagment" Type="Self.tbl_CourseManagment" Multiplicity="0..1" />
+          <End Role="tbl_subCourses" Type="Self.tbl_subCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CourseManagment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_subCourses">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_SubjectMaster_tbl_CourseManagment">
+          <End Role="tbl_CourseManagment" Type="Self.tbl_CourseManagment" Multiplicity="0..1" />
+          <End Role="tbl_SubjectMaster" Type="Self.tbl_SubjectMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CourseManagment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_SubjectMaster">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_SubjectMaster_tbl_subCourses">
+          <End Role="tbl_subCourses" Type="Self.tbl_subCourses" Multiplicity="0..1" />
+          <End Role="tbl_SubjectMaster" Type="Self.tbl_SubjectMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_subCourses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_SubjectMaster">
+              <PropertyRef Name="SubCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LekhaCommerceClassesModelStoreContainer">
+          <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CourseManagment" EntityType="Self.tbl_CourseManagment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_subCourses" EntityType="Self.tbl_subCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SubjectMaster" EntityType="Self.tbl_SubjectMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_subCourses_tbl_CourseManagment" Association="Self.FK_tbl_subCourses_tbl_CourseManagment">
+            <End Role="tbl_CourseManagment" EntitySet="tbl_CourseManagment" />
+            <End Role="tbl_subCourses" EntitySet="tbl_subCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_SubjectMaster_tbl_CourseManagment" Association="Self.FK_tbl_SubjectMaster_tbl_CourseManagment">
+            <End Role="tbl_CourseManagment" EntitySet="tbl_CourseManagment" />
+            <End Role="tbl_SubjectMaster" EntitySet="tbl_SubjectMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_SubjectMaster_tbl_subCourses" Association="Self.FK_tbl_SubjectMaster_tbl_subCourses">
+            <End Role="tbl_subCourses" EntitySet="tbl_subCourses" />
+            <End Role="tbl_SubjectMaster" EntitySet="tbl_SubjectMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LekhaCommerceClassesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LekhaCommerceClassesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Admin" EntityType="LekhaCommerceClassesModel.tbl_Admin" />
+          <EntitySet Name="tbl_CourseManagment" EntityType="LekhaCommerceClassesModel.tbl_CourseManagment" />
+          <EntitySet Name="tbl_subCourses" EntityType="LekhaCommerceClassesModel.tbl_subCourses" />
+          <EntitySet Name="tbl_SubjectMaster" EntityType="LekhaCommerceClassesModel.tbl_SubjectMaster" />
+          <AssociationSet Name="FK_tbl_subCourses_tbl_CourseManagment" Association="LekhaCommerceClassesModel.FK_tbl_subCourses_tbl_CourseManagment">
+            <End Role="tbl_CourseManagment" EntitySet="tbl_CourseManagment" />
+            <End Role="tbl_subCourses" EntitySet="tbl_subCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_SubjectMaster_tbl_CourseManagment" Association="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_CourseManagment">
+            <End Role="tbl_CourseManagment" EntitySet="tbl_CourseManagment" />
+            <End Role="tbl_SubjectMaster" EntitySet="tbl_SubjectMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_SubjectMaster_tbl_subCourses" Association="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_subCourses">
+            <End Role="tbl_subCourses" EntitySet="tbl_subCourses" />
+            <End Role="tbl_SubjectMaster" EntitySet="tbl_SubjectMaster" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CoachingName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_CourseManagment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CourseDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsFreeCourse" Type="Boolean" />
+          <NavigationProperty Name="tbl_subCourses" Relationship="LekhaCommerceClassesModel.FK_tbl_subCourses_tbl_CourseManagment" FromRole="tbl_CourseManagment" ToRole="tbl_subCourses" />
+          <NavigationProperty Name="tbl_SubjectMaster" Relationship="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_CourseManagment" FromRole="tbl_CourseManagment" ToRole="tbl_SubjectMaster" />
+        </EntityType>
+        <EntityType Name="tbl_subCourses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="SubCourseName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SubCourseDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_CourseManagment" Relationship="LekhaCommerceClassesModel.FK_tbl_subCourses_tbl_CourseManagment" FromRole="tbl_subCourses" ToRole="tbl_CourseManagment" />
+          <NavigationProperty Name="tbl_SubjectMaster" Relationship="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_subCourses" FromRole="tbl_subCourses" ToRole="tbl_SubjectMaster" />
+        </EntityType>
+        <EntityType Name="tbl_SubjectMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="SubCourseId" Type="Int32" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_CourseManagment" Relationship="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_CourseManagment" FromRole="tbl_SubjectMaster" ToRole="tbl_CourseManagment" />
+          <NavigationProperty Name="tbl_subCourses" Relationship="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_subCourses" FromRole="tbl_SubjectMaster" ToRole="tbl_subCourses" />
+        </EntityType>
+        <Association Name="FK_tbl_subCourses_tbl_CourseManagment">
+          <End Type="LekhaCommerceClassesModel.tbl_CourseManagment" Role="tbl_CourseManagment" Multiplicity="0..1" />
+          <End Type="LekhaCommerceClassesModel.tbl_subCourses" Role="tbl_subCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CourseManagment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_subCourses">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_SubjectMaster_tbl_CourseManagment">
+          <End Type="LekhaCommerceClassesModel.tbl_CourseManagment" Role="tbl_CourseManagment" Multiplicity="0..1" />
+          <End Type="LekhaCommerceClassesModel.tbl_SubjectMaster" Role="tbl_SubjectMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CourseManagment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_SubjectMaster">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_SubjectMaster_tbl_subCourses">
+          <End Type="LekhaCommerceClassesModel.tbl_subCourses" Role="tbl_subCourses" Multiplicity="0..1" />
+          <End Type="LekhaCommerceClassesModel.tbl_SubjectMaster" Role="tbl_SubjectMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_subCourses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_SubjectMaster">
+              <PropertyRef Name="SubCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LekhaCommerceClassesModelStoreContainer" CdmEntityContainer="LekhaCommerceClassesEntities">
+          <EntitySetMapping Name="tbl_Admin">
+            <EntityTypeMapping TypeName="LekhaCommerceClassesModel.tbl_Admin">
+              <MappingFragment StoreEntitySet="tbl_Admin">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CoachingName" ColumnName="CoachingName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CourseManagment">
+            <EntityTypeMapping TypeName="LekhaCommerceClassesModel.tbl_CourseManagment">
+              <MappingFragment StoreEntitySet="tbl_CourseManagment">
+                <ScalarProperty Name="IsFreeCourse" ColumnName="IsFreeCourse" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_subCourses">
+            <EntityTypeMapping TypeName="LekhaCommerceClassesModel.tbl_subCourses">
+              <MappingFragment StoreEntitySet="tbl_subCourses">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SubCourseDescription" ColumnName="SubCourseDescription" />
+                <ScalarProperty Name="SubCourseName" ColumnName="SubCourseName" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SubjectMaster">
+            <EntityTypeMapping TypeName="LekhaCommerceClassesModel.tbl_SubjectMaster">
+              <MappingFragment StoreEntitySet="tbl_SubjectMaster">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SubjectDescription" ColumnName="SubjectDescription" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="SubCourseId" ColumnName="SubCourseId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
