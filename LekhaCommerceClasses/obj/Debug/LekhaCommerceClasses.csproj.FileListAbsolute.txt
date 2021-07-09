@@ -79,3 +79,4 @@ G:\Projects\LekhaCommerceClasses\LekhaCommerceClasses\bin\Microsoft.Owin.Securit
 G:\Projects\LekhaCommerceClasses\LekhaCommerceClasses\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 G:\Projects\LekhaCommerceClasses\LekhaCommerceClasses\obj\Debug\LekhaCommerceClasses.dll
 G:\Projects\LekhaCommerceClasses\LekhaCommerceClasses\obj\Debug\LekhaCommerceClasses.pdb
+G:\Projects\LekhaCommerceClasses\LekhaCommerceClasses\obj\Debug\LekhaCommerceClasses.csprojResolveAssemblyReference.cache

@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="381b85c1226c4830a04373bb4a58800d" Name="Diagram1">
-        <EntityTypeShape EntityType="LekhaCommerceClassesModel.tbl_Admin" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="LekhaCommerceClassesModel.tbl_CourseManagment" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="LekhaCommerceClassesModel.tbl_subCourses" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="LekhaCommerceClassesModel.tbl_SubjectMaster" Width="1.5" PointX="5.25" PointY="1" />
-        <AssociationConnector Association="LekhaCommerceClassesModel.FK_tbl_subCourses_tbl_CourseManagment" />
-        <AssociationConnector Association="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_CourseManagment" />
-        <AssociationConnector Association="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_subCourses" />
+      <Diagram DiagramId="a53282410ecb4ec5b5c5aa6d476d6063" Name="Diagram1">
+        <EntityTypeShape EntityType="LekhaCommerceClassesModel.tbl_Admin" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LekhaCommerceClassesModel.tbl_CourseManagment" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LekhaCommerceClassesModel.tbl_subCourses" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LekhaCommerceClassesModel.tbl_SubjectMaster" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="LekhaCommerceClassesModel.FK_tbl_subCourses_tbl_CourseManagment" ManuallyRouted="false" />
+        <AssociationConnector Association="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_CourseManagment" ManuallyRouted="false" />
+        <AssociationConnector Association="LekhaCommerceClassesModel.FK_tbl_SubjectMaster_tbl_subCourses" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
